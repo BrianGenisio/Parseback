@@ -1,0 +1,5 @@
+module.exports =  
+  applicationID: 'Your Parse.com Application ID'
+  masterKey:     'Your Parse.com Master Key' 
+  apiPath:  '/data/'
+  port:     3000
