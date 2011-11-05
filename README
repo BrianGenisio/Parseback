@@ -1,0 +1,41 @@
+To run this Proxy to Parse.com, you will need the following installed:
+
+* Node.js
+* CoffeeScript (npm install -g coffee-script)
+* Express (npm install express)
+* Restler (npm install restler)
+
+Also, make sure you have created a project on Parse.com.  Then:
+
+* Make a copy of the config (cp config.coffee.example config.coffee)
+* Edit config.coffee to add your Application ID and Master Key from Parse.com
+
+Finally, to run this proxy, simply execute:
+
+* coffee proxy.coffee
+
+To test it out, you can use curl:
+
+**CREATE**
+ > curl -X POST -H "Content-Type: application/json" \
+ > -d '{"first": "Brian", "last": "Genisio"}' \
+ > http://localhost:3001/data/People
+{"createdAt":"2011-11-05T19:11:25.873Z","objectId":"fiIMd53m0j"}
+
+**LIST**
+ > curl -X GET http://localhost:3001/data/People
+{"results":[{"updatedAt":"2011-11-05T19:11:25.873Z","last":"Genisio","createdAt":"2011-11-05T19:11:25.873Z","first":"Brian","objectId":"fiIMd53m0j"}]}
+
+**UPDATE**
+ > curl -X PUT -H "Content-Type: application/json" \
+ > -d '{"middle": "Michael"}' \
+ > http://localhost:3001/data/People/fiIMd53m0j
+{"updatedAt":"2011-11-05T19:15:25.122Z"}
+
+**SHOW**
+ > curl -X GET http://localhost:3001/data/People/fiIMd53m0j                          {"middle":"Michael","updatedAt":"2011-11-05T19:15:25.122Z","last":"Genisio","createdAt":"2011-11-05T19:11:25.873Z","first":"Brian","objectId":"fiIMd53m0j"} 
+
+**DELETE**
+ > curl -X DELETE http://localhost:3001/data/People/fiIMd53m0j
+{} 
+
