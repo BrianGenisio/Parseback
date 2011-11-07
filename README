@@ -39,3 +39,27 @@ To test it out, you can use curl:
  > curl -X DELETE http://localhost:3001/data/People/fiIMd53m0j
 {} 
 
+If you want to play with the Parse.com/Backbone.js integration, open your browser and piont to http://localhost:3001 and then open your developer console.  The equivalent actions can be executed using Backbone.js models:
+
+**CREATE**
+> var person = new app.models.Person({first: "Brian", last: "Genisio"})
+> person.save()
+
+**LIST**
+> var people = new app.collections.People()
+> people.fetch()
+
+**UPDATE**
+person.save({middle: "Michael"})
+
+**SHOW**
+var brian = new app.models.Person({id: "0XH76yfqyc"})
+brian.fetch()
+
+**DELETE**
+brian.destroy()
+
+**QUERY**
+people.fetch({ query: { last: "Genisio" }}) // get only people with the last name of "Genisio"
+people.fetch({ query: { last: {"$ne": "Doe" }}}) // get only people whols last name is not "Doe"
+
